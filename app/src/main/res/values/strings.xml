@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">chatRoom</string>
+    <string name="password">Password\n</string>
+    <string name="login">login\n</string>
+    <string name="username">Username</string>
+    <string name="register">Register\n</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="add_image">Add Image</string>
+    <string name="name">Name</string>
+    <string name="email">Email\n</string>
+    <string name="confirm_password">Confirm Password\n</string>
+    <string name="sign_up">Sign Up\n</string>
+    <string name="sign_in">Sign In</string>
+</resources>
