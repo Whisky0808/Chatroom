@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatroom.activities.UsersActivity;
+import com.example.chatroom.data_structure.SuperList;
 import com.example.chatroom.databinding.ItemContainerUserBinding;
 import com.example.chatroom.listeners.UserListener;
 import com.example.chatroom.models.User;
@@ -18,10 +19,10 @@ import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
 
-    private final List<User> users;
+    private final SuperList<User> users;
     private final UserListener userListener;
 
-    public UsersAdapter(List<User> users, UserListener userListener) {
+    public UsersAdapter(SuperList<User> users, UserListener userListener) {
         this.users = users;
         this.userListener = userListener;
     }
