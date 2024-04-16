@@ -9,6 +9,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chatroom.adapters.ChatAdapter;
+import com.example.chatroom.data_structure.Sorting;
 import com.example.chatroom.databinding.ActivityChatBinding;
 import com.example.chatroom.models.ChatMessage;
 import com.example.chatroom.models.User;
@@ -100,6 +101,7 @@ public class ChatActivity extends AppCompatActivity {
             int count = chatMessages.size();
             for (DocumentChange documentChange : value.getDocumentChanges()) {
                 if (documentChange.getType() == DocumentChange.Type.ADDED) {
+//                    Sorting<ChatMessage> chatMessage = new Sorting<>();
                     ChatMessage chatMessage = new ChatMessage();
                     chatMessage.senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
                     chatMessage.receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVER_ID);
