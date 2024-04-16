@@ -37,6 +37,13 @@ public interface BagInterface<T> {
      @return  True if the bag contains anEntry, or false if not. */
     public boolean contains(T anEntry);
 
+    /**
+     * Returns the element at the specified position in the list
+     * @param index the specified position
+     * @return the data represented by the specified element
+     */
+    public T get(int index);
+
     /** Retrieves all entries that are in this bag.
      @return  A newly allocated array of all the entries in the bag.
      Note: If the bag is empty, the returned array is empty. */

@@ -14,6 +14,8 @@ import com.example.androidchatapp.R;
 import com.example.androidchatapp.adapters.UsersAdapter;
 import com.example.androidchatapp.databinding.ActivityUsersBinding;
 import com.example.androidchatapp.listeners.UserListener;
+import com.example.androidchatapp.models.BagInterface;
+import com.example.androidchatapp.models.LinkedBag;
 import com.example.androidchatapp.models.LinkedNodeList;
 import com.example.androidchatapp.models.ListInterface;
 import com.example.androidchatapp.models.User;
@@ -63,7 +65,7 @@ public class UsersActivity extends AppCompatActivity implements UserListener {
                     // get current userId
                     String currentUserId = preferenceManager.getString(Constants.KEY_USER_ID);
                     if (task.isSuccessful() && task.getResult() != null) {
-                        ListInterface<User> users = new LinkedNodeList<>();
+                        BagInterface<User> users = new LinkedBag<>();
                         for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
                             if (currentUserId.equals(queryDocumentSnapshot.getId())) {
                                 continue; // avoid add current itself

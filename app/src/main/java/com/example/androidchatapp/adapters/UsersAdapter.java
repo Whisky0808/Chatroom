@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidchatapp.databinding.ItemContainerUserBinding;
 import com.example.androidchatapp.listeners.UserListener;
+import com.example.androidchatapp.models.BagInterface;
 import com.example.androidchatapp.models.ListInterface;
 import com.example.androidchatapp.models.User;
 
@@ -18,10 +19,10 @@ import java.util.List;
 
 public class UsersAdapter extends  RecyclerView.Adapter<UsersAdapter.UserViewHolder>{
 
-    private final ListInterface<User> users;
+    private final BagInterface<User> users;
     private final UserListener userListener;
 
-    public UsersAdapter(ListInterface<User> users, UserListener userListener) {
+    public UsersAdapter(BagInterface<User> users, UserListener userListener) {
         this.users = users;
         this.userListener = userListener;
     }
@@ -44,7 +45,7 @@ public class UsersAdapter extends  RecyclerView.Adapter<UsersAdapter.UserViewHol
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return users.getCurrentSize();
     }
 
     class UserViewHolder extends RecyclerView.ViewHolder {

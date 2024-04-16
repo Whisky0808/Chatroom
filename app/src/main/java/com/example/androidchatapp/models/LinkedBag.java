@@ -146,7 +146,7 @@ public class LinkedBag<T> implements BagInterface<T> {
             }
             loopCounter++;
             currentNode = currentNode.getNextNode();
-        } // end while
+        }
         return frequency;
     }
 
@@ -165,8 +165,36 @@ public class LinkedBag<T> implements BagInterface<T> {
                 found = true;
             else
                 currentNode = currentNode.getNextNode();
-        } // end while
+        }
         return found;
+    }
+
+    /**
+     * Returns the element at the specified position in the bag
+     * @param index the specified position
+     * @return the data represented by the specified element
+     */
+    @Override
+    public T get(int index) {
+        checkElementIndex(index);
+
+        Node<T> n = first;
+        for (int i = 0; i < index; i++) {
+            n = n.getNextNode();
+        }
+        T data = n.getData();
+
+        return data;
+    }
+
+    /**
+     * Check if the specified position is within the range of the list
+     * @param index the specified position
+     */
+    private void checkElementIndex(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
     }
 
     /**
