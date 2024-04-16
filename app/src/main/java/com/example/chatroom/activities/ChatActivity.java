@@ -9,7 +9,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chatroom.adapters.ChatAdapter;
-import com.example.chatroom.data_structure.Sorting;
+import com.example.chatroom.data_structure.QuickSort;
 import com.example.chatroom.databinding.ActivityChatBinding;
 import com.example.chatroom.models.ChatMessage;
 import com.example.chatroom.models.User;
@@ -25,7 +25,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
@@ -111,7 +110,8 @@ public class ChatActivity extends AppCompatActivity {
                     chatMessages.add(chatMessage);
                 }
             }
-            chatMessages.sort(Comparator.comparing(obj -> obj.dateObject));
+            QuickSort.quickSort(chatMessages, 0, chatMessages.size() - 1);
+//            chatMessages.sort(Comparator.comparing(obj -> obj.dateObject));
             if (count == 0) {
                 chatAdapter.notifyDataSetChanged();
             } else {
