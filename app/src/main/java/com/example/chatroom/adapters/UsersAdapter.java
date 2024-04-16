@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatroom.activities.UsersActivity;
 import com.example.chatroom.databinding.ItemContainerUserBinding;
+import com.example.chatroom.listeners.UserListener;
 import com.example.chatroom.models.User;
 
 import java.util.List;
@@ -18,9 +19,11 @@ import java.util.List;
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
 
     private final List<User> users;
+    private final UserListener userListener;
 
-    public UsersAdapter(List<User> users, UsersActivity usersActivity) {
+    public UsersAdapter(List<User> users, UserListener userListener) {
         this.users = users;
+        this.userListener = userListener;
     }
 
     @NonNull
@@ -47,6 +50,8 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
 
     class UserViewHolder extends RecyclerView.ViewHolder {
+//       Optimize the cache usage and function via reusing the view, only
+//       update the content when it's needed
 
         ItemContainerUserBinding binding;
         UserViewHolder(ItemContainerUserBinding itemContainerUserBinding) {
@@ -55,9 +60,11 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         }
 
         void setUserData(User user) {
+            // this is the  sub-component of  "Select user" page
             binding.textName.setText(user.name);
             binding.textEmail.setText(user.email);
             binding.imageProfile.setImageBitmap(getUserImage(user.image));
+            binding.getRoot().setOnClickListener(v->userListener.onUserClicked(user));
 
         }
     }

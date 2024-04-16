@@ -1,14 +1,15 @@
 package com.example.chatroom.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.chatroom.R;
 import com.example.chatroom.adapters.UsersAdapter;
 import com.example.chatroom.databinding.ActivityUsersBinding;
+import com.example.chatroom.listeners.UserListener;
 import com.example.chatroom.models.User;
 import com.example.chatroom.utilities.Constants;
 import com.example.chatroom.utilities.PreferenceManager;
@@ -18,7 +19,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersActivity extends AppCompatActivity {
+public class UsersActivity extends AppCompatActivity implements UserListener {
 
     private ActivityUsersBinding binding;
     private PreferenceManager preferenceManager;
@@ -95,5 +96,15 @@ public class UsersActivity extends AppCompatActivity {
             binding.progressBar.setVisibility(View.INVISIBLE);
         }
     }
+
+    @Override
+    public void onUserClicked(User user) {
+        //redirect
+        Intent intent = new Intent(getApplicationContext(), ChatActivity.class);
+        intent.putExtra(Constants.KEY_USER, user);
+        startActivity(intent);
+        finish();
+    }
+
 
 }
