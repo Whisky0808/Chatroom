@@ -1,5 +1,6 @@
 package com.example.androidchatapp.models;
 
+import java.util.Comparator;
 import java.util.List;
 
 public interface ListInterface<T> {
@@ -54,4 +55,6 @@ public interface ListInterface<T> {
      * @return an array containing all of the elements in this list in proper sequence
      */
     public Object[] toArray();
+
+    public void sort(Comparator<? super T> c);
 }

@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements ConversionListene
 
     private ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
-    private List<ChatMessage> conversations;
+    private ListInterface<ChatMessage> conversations;
     private RecentConversationsAdapter conversationsAdapter;
     private FirebaseFirestore database;
 
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements ConversionListene
     }
 
     private void init() {
-        conversations = new ArrayList<>();
+        conversations = new LinkedNodeList<>();
         conversationsAdapter = new RecentConversationsAdapter(conversations, this);
         binding.conversationsRecyclerView.setAdapter(conversationsAdapter);
         database = FirebaseFirestore.getInstance();
@@ -145,7 +146,6 @@ public class MainActivity extends AppCompatActivity implements ConversionListene
                 }
             }
             conversations.sort((obj1, obj2) -> obj2.dateObject.compareTo(obj1.dateObject));
-//            Collections.sort(conversations, (obj1, obj2) -> obj2.dateObject.compareTo(obj1.dateObject));
             conversationsAdapter.notifyDataSetChanged();
             binding.conversationsRecyclerView.smoothScrollToPosition(0);
             binding.conversationsRecyclerView.setVisibility(View.VISIBLE);

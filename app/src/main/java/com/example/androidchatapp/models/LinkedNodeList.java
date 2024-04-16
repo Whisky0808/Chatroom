@@ -2,6 +2,10 @@ package com.example.androidchatapp.models;
 
 
 import androidx.annotation.NonNull;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 public class LinkedNodeList<T> implements ListInterface<T> {
@@ -286,4 +290,13 @@ public class LinkedNodeList<T> implements ListInterface<T> {
         return result;
     }
 
+    public void sort(Comparator<? super T> c) {
+        Object[] a = this.toArray();
+        Arrays.sort(a, (Comparator) c);
+//        ListIterator<T> i = this.listIterator();
+//        for (Object e : a) {
+//            i.next();
+//            i.set((T) e);
+//        }
+    }
 }
