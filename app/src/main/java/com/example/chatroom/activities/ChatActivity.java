@@ -9,6 +9,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chatroom.adapters.ChatAdapter;
+import com.example.chatroom.data_structure.LinkedNodeList;
+import com.example.chatroom.data_structure.ListInterface;
 import com.example.chatroom.data_structure.QuickSort;
 import com.example.chatroom.databinding.ActivityChatBinding;
 import com.example.chatroom.models.ChatMessage;
@@ -35,7 +37,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private ActivityChatBinding binding;
     private User receiverUser;
-    private List<ChatMessage> chatMessages;
+    private ListInterface<ChatMessage> chatMessages;
     private ChatAdapter chatAdapter;
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
@@ -58,7 +60,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void init() {
         preferenceManager = new PreferenceManager(getApplicationContext());
-        chatMessages = new ArrayList<>();
+        chatMessages = new LinkedNodeList<>();
         chatAdapter = new ChatAdapter(
                 //chat window encapsulated again
                 chatMessages,
@@ -111,7 +113,6 @@ public class ChatActivity extends AppCompatActivity {
                 }
             }
             QuickSort.quickSort(chatMessages, 0, chatMessages.size() - 1);
-//            chatMessages.sort(Comparator.comparing(obj -> obj.dateObject));
             if (count == 0) {
                 chatAdapter.notifyDataSetChanged();
             } else {

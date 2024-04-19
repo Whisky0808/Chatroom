@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.chatroom.activities.UsersActivity;
+import com.example.chatroom.data_structure.BagInterface;
 import com.example.chatroom.data_structure.SuperList;
 import com.example.chatroom.databinding.ItemContainerUserBinding;
 import com.example.chatroom.listeners.UserListener;
@@ -19,10 +20,10 @@ import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
 
-    private final SuperList<User> users;
+    private final BagInterface<User> users;
     private final UserListener userListener;
 
-    public UsersAdapter(SuperList<User> users, UserListener userListener) {
+    public UsersAdapter(BagInterface<User> users, UserListener userListener) {
         this.users = users;
         this.userListener = userListener;
     }
@@ -46,7 +47,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
 
     @Override
     public int getItemCount() {
-        return users.size();
+        return users.getCurrentSize();
     }
 
 

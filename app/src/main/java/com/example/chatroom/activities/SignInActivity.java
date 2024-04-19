@@ -2,6 +2,7 @@ package com.example.chatroom.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
@@ -78,6 +79,7 @@ public class SignInActivity extends AppCompatActivity {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     } else {
+                        Log.d("signintask",task.getException().getLocalizedMessage());
                         loading(false);
                         showToast("Unable to sign in");
                     }

@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chatroom.data_structure.ListInterface;
 import com.example.chatroom.databinding.ItemContainerRecentConversionBinding;
 import com.example.chatroom.listeners.ConversionListener;
 import com.example.chatroom.models.ChatMessage;
@@ -18,10 +19,10 @@ import java.util.List;
 
 public class RecentConversationsAdapter extends RecyclerView.Adapter<RecentConversationsAdapter.ConversionViewHolder>{
 
-    private final List<ChatMessage> chatMessages;
+    private final ListInterface<ChatMessage> chatMessages;
     private final ConversionListener conversionListener;
 
-    public RecentConversationsAdapter(List<ChatMessage> chatMessages, ConversionListener conversionListener) {
+    public RecentConversationsAdapter(ListInterface<ChatMessage> chatMessages, ConversionListener conversionListener) {
         this.chatMessages = chatMessages;
         this.conversionListener = conversionListener;
     }
