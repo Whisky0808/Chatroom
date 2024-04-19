@@ -8,7 +8,7 @@ import java.util.List;
 public class QuickSort {
 
     // A utility function to swap two elements
-    static void swap(List<ChatMessage> messages, int i, int j) {
+    static void swap(ListInterface<ChatMessage> messages, int i, int j) {
         ChatMessage temp = messages.get(i);
         messages.set(i, messages.get(j));
         messages.set(j, temp);
@@ -18,7 +18,7 @@ public class QuickSort {
     // places the pivot element at its correct position
     // in sorted array, and places all smaller to left
     // of pivot and all greater elements to right of pivot
-    static int partition(List<ChatMessage> messages, int low, int high) {
+    static int partition(ListInterface<ChatMessage> messages, int low, int high) {
         // Choosing the pivot
         Date pivot = messages.get(high).dateObject;
 
@@ -38,7 +38,7 @@ public class QuickSort {
         return (i + 1);
     }
 
-    public static void quickSort(List<ChatMessage> messages, int low, int high) {
+    public static void quickSort(ListInterface<ChatMessage> messages, int low, int high) {
         if (low < high) {
             // pi is partitioning index, arr[p] is now at right place
             int pi = partition(messages, low, high);

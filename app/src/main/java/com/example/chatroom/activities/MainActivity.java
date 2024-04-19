@@ -17,6 +17,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.chatroom.R;
 import com.example.chatroom.adapters.RecentConversationsAdapter;
+import com.example.chatroom.data_structure.LinkedNodeList;
+import com.example.chatroom.data_structure.ListInterface;
+import com.example.chatroom.data_structure.QuickSort;
 import com.example.chatroom.databinding.ActivityMainBinding;
 import com.example.chatroom.listeners.ConversionListener;
 import com.example.chatroom.models.ChatMessage;
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements ConversionListene
 
     private ActivityMainBinding binding;
     private PreferenceManager preferenceManager;
-    private List<ChatMessage> conversations;
+    private ListInterface<ChatMessage> conversations;
     private RecentConversationsAdapter conversationsAdapter;
     private FirebaseFirestore database;
 
@@ -69,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements ConversionListene
     }
 
     private void init() {
-        conversations = new ArrayList<>();
+        conversations = new LinkedNodeList<>();
         conversationsAdapter = new RecentConversationsAdapter(conversations, this);
         binding.conversationsRecyclerView.setAdapter(conversationsAdapter);
         database = FirebaseFirestore.getInstance();
@@ -139,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements ConversionListene
                     }
                 }
             }
-            conversations.sort((obj1, obj2) -> obj2.dateObject.compareTo(obj1.dateObject));
+            QuickSort.quickSort(conversations, 0, conversations.size() - 1);
             conversationsAdapter.notifyDataSetChanged();
             binding.conversationsRecyclerView.smoothScrollToPosition(0);
             binding.conversationsRecyclerView.setVisibility(View.VISIBLE);

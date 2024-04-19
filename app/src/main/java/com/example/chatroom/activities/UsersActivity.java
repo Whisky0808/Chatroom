@@ -8,6 +8,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chatroom.adapters.UsersAdapter;
+import com.example.chatroom.data_structure.BagInterface;
+import com.example.chatroom.data_structure.LinkedBag;
 import com.example.chatroom.data_structure.SuperArrayList;
 import com.example.chatroom.data_structure.SuperList;
 import com.example.chatroom.databinding.ActivityUsersBinding;
@@ -57,7 +59,7 @@ public class UsersActivity extends AppCompatActivity implements UserListener {
                     // get current userId
                     String currentUserId = preferenceManager.getString(Constants.KEY_USER_ID);
                     if (task.isSuccessful() && task.getResult() != null) {
-                        SuperList<User> users = new SuperArrayList<>();
+                        BagInterface<User> users = new LinkedBag<>();
 
 
                         for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
