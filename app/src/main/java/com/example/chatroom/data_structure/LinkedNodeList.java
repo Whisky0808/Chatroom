@@ -197,22 +197,27 @@ public class LinkedNodeList<T> implements ListInterface<T> {
     public T get(int index) {
         checkElementIndex(index);
 
-        T data = null;
-        if (index < size / 2) {
-            Node<T> n = first;
-            for (int i = 0; i < index; i++) {
-                n = n.getNextNode();
-            }
-            data = n.getData();
+        Node<T> node = node(index);
+        return node.getData();
+    }
+
+    /**
+     * Return the node at the specified position in this list
+     * @param index the specified position
+     * @return the node at the specified position
+     */
+    Node<T> node(int index) {
+        if (index < (size >> 1)) {
+            Node<T> x = first;
+            for (int i = 0; i < index; i++)
+                x = x.getNextNode();
+            return x;
+        } else {
+            Node<T> x = last;
+            for (int i = size - 1; i > index; i--)
+                x = x.getPrevNode();
+            return x;
         }
-        else {
-            Node<T> n = last;
-            for (int i = size - 1; i > index; i--) {
-                n = n.getPrevNode();
-            }
-            data = n.getData();
-        }
-        return data;
     }
 
     /**
@@ -298,7 +303,7 @@ public class LinkedNodeList<T> implements ListInterface<T> {
     public T set(int index, T entry) {
         checkElementIndex(index);
 
-        Node<T> x = (Node<T>) get(index);
+        Node<T> x = node(index);
         T oldVal = x.getData();
         x.setData(entry);
         return oldVal;

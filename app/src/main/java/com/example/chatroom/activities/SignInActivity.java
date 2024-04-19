@@ -79,7 +79,6 @@ public class SignInActivity extends AppCompatActivity {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     } else {
-                        Log.d("signintask",task.getException().getLocalizedMessage());
                         loading(false);
                         showToast("Unable to sign in");
                     }
