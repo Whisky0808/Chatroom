@@ -15,6 +15,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.chatroom.data_structure.MyHashMap;
 import com.example.chatroom.databinding.ActivitySignUpBinding;
 import com.example.chatroom.utilities.Constants;
 import com.example.chatroom.utilities.PreferenceManager;
@@ -24,6 +25,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Map;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -62,11 +64,18 @@ public class SignUpActivity extends AppCompatActivity {
     private void signUp(){
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
+        MyHashMap<String, Object> myUser = new MyHashMap<>();
+        System.out.println("create hashmap");
+        myUser.put(Constants.KEY_NAME, binding.inputName.getText().toString());
+        myUser.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
+        myUser.put(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString());
+        myUser.put(Constants.KEY_IMAGE, encodedImage);
+
         HashMap<String, Object> user = new HashMap<>();
-        user.put(Constants.KEY_NAME, binding.inputName.getText().toString());
-        user.put(Constants.KEY_EMAIL, binding.inputEmail.getText().toString());
-        user.put(Constants.KEY_PASSWORD, binding.inputPassword.getText().toString());
-        user.put(Constants.KEY_IMAGE, encodedImage);
+        for (Map.Entry<String, Object> entry : myUser.entrySet()) {
+            user.put(entry.getKey(), entry.getValue());
+        }
+
         database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(user)
                 .addOnSuccessListener(documentReference -> {
